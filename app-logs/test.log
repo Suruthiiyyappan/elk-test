@@ -1,0 +1,228 @@
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:40.797225+00:00] AmazonBusinessLogger.ERROR: RequestException (GuzzleHttp\Exception\ServerException): Response Details
+Headers: {"Server":["Server"],"Date":["Wed, 18 Sep 2024 05:00:40 GMT"],"Content-Type":["application\/json"],"Content-Length":["158"],"Connection":["keep-alive"],"x-amz-rid":["B89XVDADSHV5QYZ3FG1R"],"x-amzn-RequestId":["e95c0689-bc92-431f-8fe6-f7bc14b85700"],"x-amz-apigw-id":["OPFe95c0689bc92"],"X-Amzn-Trace-Id":["Root=1-66ea5e78-e95c0689bc92431f"],"Vary":["Content-Type,Accept-Encoding,User-Agent"],"Strict-Transport-Security":["max-age=47474747; includeSubDomains; preload"]}
+Body: {
+  "errors": [
+    {
+      "code": "InternalFailure",
+      "message": "We encountered an internal error. Please try again.",
+      "details": ""
+    }
+  ]
+}
+Status: 500 [] []
+[2024-09-18T05:00:40.797356+00:00] AmazonBusinessLogger.CRITICAL: OrderDetails 215249: BadResponseException (InvalidArgumentException): Invalid Status Code
+Trace: #0 /app/vendor/clearesult/component-atlas/AmazonBusiness/Services/Ordering/OrderDetails.php(216): Atlas\AmazonBusiness\Services\Ordering\OrderDetails\Response->isResponseDataValid(Object(Atlas\AmazonBusiness\Services\Http\Response\Data), '215249')
+#1 /app/vendor/clearesult/component-atlas/AmazonBusiness/Services/Ordering/OrderDetails.php(96): Atlas\AmazonBusiness\Services\Ordering\OrderDetails->run()
+#2 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(122): Atlas\AmazonBusiness\Services\Ordering\OrderDetails->orderDetails(Object(Atlas\AmazonBusiness\Model\Order))
+#3 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(165): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order))
+#4 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(180): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrderByWebsite(Object(Magento\Store\Model\Website\Interceptor))
+#5 [internal function]: Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->execute(Object(Magento\Cron\Model\Schedule))
+#6 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(368): call_user_func_array(Array, Array)
+#7 /app/vendor/clearesult/component-atlas/CronSchedule/Observer/ProcessCronQueueObserver.php(173): Magento\Cron\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#8 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(879): Atlas\CronSchedule\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#9 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(840): Magento\Cron\Observer\ProcessCronQueueObserver->tryRunJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#10 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(280): Magento\Cron\Observer\ProcessCronQueueObserver->processPendingJobs('atlas_amazon_bu...', Array, 1726635603)
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:40.809775+00:00] AmazonBusinessLogger.ERROR: ShipUtility::addShipmentToOrder(): Exception Type Magento\Framework\Exception\NotFoundException. Message: There is no data to create a shipment for order "215249" from OrderDetailsResult
+Trace: #0 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(445): Atlas\AmazonBusiness\Helper\ShipUtility->hasAmazonBusinessItemToShipment()
+#1 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(516): Atlas\AmazonBusiness\Helper\ShipUtility->prepareDataToShipment()
+#2 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(124): Atlas\AmazonBusiness\Helper\ShipUtility->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order), Object(Atlas\AmazonBusiness\Model\OrderDetails))
+#3 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(165): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order))
+#4 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(180): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrderByWebsite(Object(Magento\Store\Model\Website\Interceptor))
+#5 [internal function]: Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->execute(Object(Magento\Cron\Model\Schedule))
+#6 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(368): call_user_func_array(Array, Array)
+#7 /app/vendor/clearesult/component-atlas/CronSchedule/Observer/ProcessCronQueueObserver.php(173): Magento\Cron\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#8 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(879): Atlas\CronSchedule\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#9 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(840): Magento\Cron\Observer\ProcessCronQueueObserver->tryRunJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#10 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(280): Magento\Cron\Observer\ProcessCronQueueObserver->processPendingJobs('atlas_amazon_bu...', Array, 1726635603)
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:40.809880+00:00] AmazonBusinessLogger.ERROR: Order 215249: Cron Job Exception Type Magento\Framework\Exception\NotFoundException. Message: There is no data to create a shipment for order "215249" from OrderDetailsResult
+Trace: #0 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(445): Atlas\AmazonBusiness\Helper\ShipUtility->hasAmazonBusinessItemToShipment()
+#1 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(516): Atlas\AmazonBusiness\Helper\ShipUtility->prepareDataToShipment()
+#2 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(124): Atlas\AmazonBusiness\Helper\ShipUtility->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order), Object(Atlas\AmazonBusiness\Model\OrderDetails))
+#3 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(165): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order))
+#4 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(180): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrderByWebsite(Object(Magento\Store\Model\Website\Interceptor))
+#5 [internal function]: Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->execute(Object(Magento\Cron\Model\Schedule))
+#6 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(368): call_user_func_array(Array, Array)
+#7 /app/vendor/clearesult/component-atlas/CronSchedule/Observer/ProcessCronQueueObserver.php(173): Magento\Cron\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#8 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(879): Atlas\CronSchedule\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#9 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(840): Magento\Cron\Observer\ProcessCronQueueObserver->tryRunJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#10 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(280): Magento\Cron\Observer\ProcessCronQueueObserver->processPendingJobs('atlas_amazon_bu...', Array, 1726635603)
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:40.809936+00:00] AmazonBusinessLogger.INFO: End add shipment to order for Energy Trust of Oregon [] []
+[2024-09-18T05:00:40.809955+00:00] AmazonBusinessLogger.INFO: Start add shipment to order for CenterPoint Energy Retail Products Marketplace [] []
+[2024-09-18T05:00:41.451063+00:00] AmazonBusinessLogger.ERROR: RequestException (GuzzleHttp\Exception\ServerException): Response Details
+Headers: {"Server":["Server"],"Date":["Wed, 18 Sep 2024 05:00:41 GMT"],"Content-Type":["application\/json"],"Content-Length":["158"],"Connection":["keep-alive"],"x-amz-rid":["HYWVR6EPZ1DYEVQFR1XM"],"x-amzn-RequestId":["bbf62c33-cfff-40a2-a6d4-fbeaac99e915"],"x-amz-apigw-id":["OPFbbf62c33cfff"],"X-Amzn-Trace-Id":["Root=1-66ea5e79-bbf62c33cfff40a2"],"Vary":["Content-Type,Accept-Encoding,User-Agent"],"Strict-Transport-Security":["max-age=47474747; includeSubDomains; preload"]}
+Body: {
+  "errors": [
+    {
+      "code": "InternalFailure",
+      "message": "We encountered an internal error. Please try again.",
+      "details": ""
+    }
+  ]
+}
+Status: 500 [] []
+[2024-09-18T05:00:41.451191+00:00] AmazonBusinessLogger.CRITICAL: OrderDetails 215226: BadResponseException (InvalidArgumentException): Invalid Status Code
+Trace: #0 /app/vendor/clearesult/component-atlas/AmazonBusiness/Services/Ordering/OrderDetails.php(216): Atlas\AmazonBusiness\Services\Ordering\OrderDetails\Response->isResponseDataValid(Object(Atlas\AmazonBusiness\Services\Http\Response\Data), '215226')
+#1 /app/vendor/clearesult/component-atlas/AmazonBusiness/Services/Ordering/OrderDetails.php(96): Atlas\AmazonBusiness\Services\Ordering\OrderDetails->run()
+#2 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(122): Atlas\AmazonBusiness\Services\Ordering\OrderDetails->orderDetails(Object(Atlas\AmazonBusiness\Model\Order))
+#3 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(165): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order))
+#4 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(180): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrderByWebsite(Object(Magento\Store\Model\Website\Interceptor))
+#5 [internal function]: Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->execute(Object(Magento\Cron\Model\Schedule))
+#6 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(368): call_user_func_array(Array, Array)
+#7 /app/vendor/clearesult/component-atlas/CronSchedule/Observer/ProcessCronQueueObserver.php(173): Magento\Cron\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#8 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(879): Atlas\CronSchedule\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#9 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(840): Magento\Cron\Observer\ProcessCronQueueObserver->tryRunJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#10 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(280): Magento\Cron\Observer\ProcessCronQueueObserver->processPendingJobs('atlas_amazon_bu...', Array, 1726635603)
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:41.464340+00:00] AmazonBusinessLogger.ERROR: ShipUtility::addShipmentToOrder(): Exception Type Magento\Framework\Exception\NotFoundException. Message: There is no data to create a shipment for order "215226" from OrderDetailsResult
+Trace: #0 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(445): Atlas\AmazonBusiness\Helper\ShipUtility->hasAmazonBusinessItemToShipment()
+#1 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(516): Atlas\AmazonBusiness\Helper\ShipUtility->prepareDataToShipment()
+#2 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(124): Atlas\AmazonBusiness\Helper\ShipUtility->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order), Object(Atlas\AmazonBusiness\Model\OrderDetails))
+#3 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(165): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order))
+#4 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(180): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrderByWebsite(Object(Magento\Store\Model\Website\Interceptor))
+#5 [internal function]: Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->execute(Object(Magento\Cron\Model\Schedule))
+#6 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(368): call_user_func_array(Array, Array)
+#7 /app/vendor/clearesult/component-atlas/CronSchedule/Observer/ProcessCronQueueObserver.php(173): Magento\Cron\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#8 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(879): Atlas\CronSchedule\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#9 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(840): Magento\Cron\Observer\ProcessCronQueueObserver->tryRunJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#10 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(280): Magento\Cron\Observer\ProcessCronQueueObserver->processPendingJobs('atlas_amazon_bu...', Array, 1726635603)
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:41.464453+00:00] AmazonBusinessLogger.ERROR: Order 215226: Cron Job Exception Type Magento\Framework\Exception\NotFoundException. Message: There is no data to create a shipment for order "215226" from OrderDetailsResult
+Trace: #0 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(445): Atlas\AmazonBusiness\Helper\ShipUtility->hasAmazonBusinessItemToShipment()
+#1 /app/vendor/clearesult/component-atlas/AmazonBusiness/Helper/ShipUtility.php(516): Atlas\AmazonBusiness\Helper\ShipUtility->prepareDataToShipment()
+#2 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(124): Atlas\AmazonBusiness\Helper\ShipUtility->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order), Object(Atlas\AmazonBusiness\Model\OrderDetails))
+#3 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(165): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrder(Object(Atlas\AmazonBusiness\Model\Order))
+#4 /app/vendor/clearesult/component-atlas/AmazonBusiness/Cron/AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob.php(180): Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->addShipmentToOrderByWebsite(Object(Magento\Store\Model\Website\Interceptor))
+#5 [internal function]: Atlas\AmazonBusiness\Cron\AddShipmentToOrderByAmazonBusinessOrderDetailsCronJob->execute(Object(Magento\Cron\Model\Schedule))
+#6 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(368): call_user_func_array(Array, Array)
+#7 /app/vendor/clearesult/component-atlas/CronSchedule/Observer/ProcessCronQueueObserver.php(173): Magento\Cron\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#8 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(879): Atlas\CronSchedule\Observer\ProcessCronQueueObserver->_runJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#9 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(840): Magento\Cron\Observer\ProcessCronQueueObserver->tryRunJob(1726635600, 1726635603, Array, Object(Magento\Cron\Model\Schedule), 'atlas_amazon_bu...')
+#10 /app/vendor/magento/module-cron/Observer/ProcessCronQueueObserver.php(280): Magento\Cron\Observer\ProcessCronQueueObserver->processPendingJobs('atlas_amazon_bu...', Array, 1726635603)
+#11 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(88): Magento\Cron\Observer\ProcessCronQueueObserver->execute(Object(Magento\Framework\Event\Observer))
+#12 /app/vendor/magento/framework/Event/Invoker/InvokerDefault.php(74): Magento\Framework\Event\Invoker\InvokerDefault->_callObserverMethod(Object(Atlas\CronSchedule\Observer\ProcessCronQueueObserver), Object(Magento\Framework\Event\Observer))
+#13 /app/vendor/magento/framework/Event/Manager.php(65): Magento\Framework\Event\Invoker\InvokerDefault->dispatch(Array, Object(Magento\Framework\Event\Observer))
+#14 /app/generated/code/Magento/Framework/Event/Manager/Proxy.php(95): Magento\Framework\Event\Manager->dispatch('default', Array)
+#15 /app/vendor/magento/framework/App/Cron.php(86): Magento\Framework\Event\Manager\Proxy->dispatch('default')
+#16 /app/vendor/magento/module-cron/Console/Command/CronCommand.php(126): Magento\Framework\App\Cron->launch()
+#17 /app/vendor/symfony/console/Command/Command.php(298): Magento\Cron\Console\Command\CronCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /app/vendor/magento/framework/Interception/Interceptor.php(58): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /app/vendor/magento/framework/Interception/Interceptor.php(138): Magento\Cron\Console\Command\CronCommand\Interceptor->___callParent('run', Array)
+#20 /app/vendor/magento/framework/Interception/Interceptor.php(153): Magento\Cron\Console\Command\CronCommand\Interceptor->Magento\Framework\Interception\{closure}(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /app/generated/code/Magento/Cron/Console/Command/CronCommand/Interceptor.php(23): Magento\Cron\Console\Command\CronCommand\Interceptor->___callPlugins('run', Array, Array)
+#22 /app/vendor/symfony/console/Application.php(1040): Magento\Cron\Console\Command\CronCommand\Interceptor->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 /app/vendor/symfony/console/Application.php(301): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Cron\Console\Command\CronCommand\Interceptor), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 /app/vendor/magento/framework/Console/Cli.php(116): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 /app/vendor/symfony/console/Application.php(171): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 /app/bin/magento(23): Symfony\Component\Console\Application->run()
+#27 {main} [] []
+[2024-09-18T05:00:41.464505+00:00] AmazonBusinessLogger.INFO: End add shipment to order for CenterPoint Energy Retail Products Marketplace [] []
+[2024-09-18T05:00:41.464525+00:00] AmazonBusinessLogger.INFO: END ADD SHIPMENT TO ORDER BY AMAZON BUSINESS ORDER DETAILS CRON JOB [] []
+[2024-09-18T07:21:28.182264+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215303: the Amazon Business Ordering API is not enabled for 215303 Website [] []
+[2024-09-18T07:35:38.690605+00:00] AmazonBusinessLogger.INFO: PlaceOrder: Invalid Order [] []
+[2024-09-18T08:00:17.648614+00:00] AmazonBusinessLogger.INFO: PlaceOrder: Invalid Order [] []
+[2024-09-18T08:00:59.083947+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215304: the Amazon Business Ordering API is not enabled for 215304 Website [] []
+[2024-09-18T12:56:47.458268+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215305: the Amazon Business Ordering API is not enabled for 215305 Website [] []
+[2024-09-18T13:03:22.036148+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215306: the Amazon Business Ordering API is not enabled for 215306 Website [] []
+[2024-09-18T13:19:22.728285+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215308: the Amazon Business Ordering API is not enabled for 215308 Website [] []
+[2024-09-18T13:39:25.868957+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215309: the Amazon Business Ordering API is not enabled for 215309 Website [] []
+[2024-09-18T13:46:47.412950+00:00] AmazonBusinessLogger.INFO: PlaceOrder 215310: the Amazon Business Ordering 
